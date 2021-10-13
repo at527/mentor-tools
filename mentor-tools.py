@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-#import subprocess 
+import subprocess 
 import sys
 import os
 
@@ -29,9 +29,37 @@ def clean():
         print("Clean aborted, not removing files")
     return
 
+# def checkall():
+#     # cwd = os.getcwd()
+#     # dir_list = os.listdir(cwd)
+#     # machines = []
+#     # for file in dir_list:
+#     #     if file.endswith(".nfa") or file.endswith(".dfa"):
+#     #         machines.append(file)
+
+#     # for machine in machines:
+#     #     subprocess
+
+def pdfall():
+    cwd = os.getcwd()
+    dir_list = os.listdir(cwd)
+    machines = []
+    for file in dir_list:
+        if file.endswith(".nfa") or file.endswith(".dfa"):
+            machines.append(file)
+
+    for machine in machines:
+        subprocess.run(["/cs/student/emre/bin/mentor", machine, "graph", machine +".pdf"])
+
+    return
+
+
 def main():
     if sys.argv[1] == "clean":
         return clean()
+
+    elif sys.argv[1] == "pdfall":
+        return pdfall()
     else:
         print("Invalid argument")
         return
